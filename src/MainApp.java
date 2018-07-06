@@ -35,19 +35,24 @@ public class MainApp {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
 		System.out.println(SALUTO);
+
+		ElencoStorie s = new ElencoStorie();
 		
-		InsiemeBivi b = new InsiemeBivi();
+		Menu.menuPrincipale();
+		
+		
+		
+		
+	/*	InsiemeBivi b = new InsiemeBivi();
 		int nBivi =InputDati.leggiIntero("numero Bivi: ");
 		for (int i =0; i<nBivi; i++) {
 			System.out.println("bivio " + (i+1));
 			b.aggiungiBivio(creaBivio(nBivi));
 		}
-		//b.aggiungiBivio(new Bivio(FINALE)); //aggiungo il bivio terminale
+		*/
 		
-		
-	 Menu.mioMenu(b.getBivio(0), b.getAll());
+	// Menu.mioMenu(b.getBivio(0), b.getAll());
 	 System.out.println(FINALE);
 		
 	}
