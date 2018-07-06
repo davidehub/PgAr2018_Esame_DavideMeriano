@@ -11,7 +11,10 @@ public class ElencoStorie {
 		return elencoStorie.get(n);
 	}
 	
-	
+	/**
+	 * 
+	 * @return restituisce un arraylist con tutte le storie
+	 */
 	public ArrayList <Storia> getAll(){
 		return elencoStorie;
 	}

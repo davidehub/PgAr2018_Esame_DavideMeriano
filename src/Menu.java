@@ -10,7 +10,7 @@ public class Menu{
 			ArrayList<Scelta> opzione = b.getScelte();
 			MyMenu myMenu = new MyMenu("scelta opzioni", opzione);
 			int scelta = myMenu.scegli();
-			if (opzione.size()!=1 && opzione.size()!=0) {
+			if (opzione.size()!=1 && scelta!=0) {
 				int i = b.getScelte().get(scelta-1).getCollegamento();
 				return mioMenu(bivi.get(i), bivi);
 			}
@@ -31,6 +31,10 @@ public class Menu{
 		int scelta = menuPrincipale.scegli();
 		switch (scelta) {
 			case 1: {
+				if (el.getAll().size()==0) { //se non ci sono ancora storie esco dal ciclo
+					System.out.println("non ci sono storie ancora, Inseriscine almeno una prima");
+					break;
+				}
 				String titoloCercato = InputDati.leggiStringaNonVuota("inserisci il titolo della storia :");
 				for (int i=0; i<el.getAll().size(); i++) {
 					if (titoloCercato.equalsIgnoreCase(el.getStoria(i).getTitolo()));
@@ -42,6 +46,7 @@ public class Menu{
 					int scelta1 = menu1.scegli();
 					switch(scelta1) {
 						case 1:{
+							
 							Menu.mioMenu(el.getStoria(i).getBivio(0), el.getStoria(i).getAll());
 							break;
 						}
@@ -52,7 +57,10 @@ public class Menu{
 			}
 			
 			case 2: {
-				
+				if (el.getAll().size()==0) { //se non ci sono ancora storie esco dal ciclo
+					System.out.println("non ci sono storie ancora, Inseriscine almeno una prima");
+					break;
+				}
 				String [] opzione = {"Visualizza le storie in ordine alfabetico", "visualizza le storie per ordine di bivi"};
 				MenuPrincipale menu2 = new MenuPrincipale ("Elenco Storie", opzione );
 				int scelta2 = menu2.scegli();
@@ -100,15 +108,19 @@ public class Menu{
 
 					break;
 			}
-			default: break;
+			default: fine =true;
 			}
 		}while(!fine);
 		
 		return 1;
 	}
 
-
-	public static ArrayList<String> visualizzaOrdineAlfabetico(ElencoStorie e) {
+/**
+ * 
+ * @param e
+ * @return restituisce il vettore delle storie ordinate in ordien alfabetico
+ */
+	public static ArrayList<String> visualizzaOrdineAlfabetico(ElencoStorie e) {  
 		ArrayList <String> array = new ArrayList <String>();
 		for (int t=0; t<e.getAll().size(); t++) {
 			array.add(e.getStoria(t).getTitolo());
@@ -128,7 +140,11 @@ public class Menu{
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @param e
+	 * @return restituisce il vettore delle storie ordinate in ordine di bivi presenti
+	 */
 	
 	public static ArrayList<String> visualizzaOrdineBivi(ElencoStorie e) {
 		ArrayList <Integer> contenitore = new ArrayList <Integer>();
@@ -138,13 +154,14 @@ public class Menu{
 			vettore.add(e.getStoria(t).getTitolo());
 		}
 			
-		String temporanea="";
+		String tempo;
 		for (int i=0; i< e.getAll().size(); i++) {
-			for (int j=i; j< e.getAll().size();i++) {
+			for (int j=i; j< e.getAll().size();j++) {
+				if (i==j)continue;
 				if(contenitore.get(i) < contenitore.get(j)) {
-					temporanea = vettore.get(j);
+					tempo = vettore.get(j);
 					vettore.set(j, vettore.get(i));
-					vettore.set(i, vettore.get(j));
+					vettore.set(i, tempo);
 				}
 			}
 	}

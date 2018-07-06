@@ -22,9 +22,6 @@ public class Bivio {
 	}
 
 
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
 
 
 	public ArrayList<Scelta> getScelte() {
@@ -32,9 +29,6 @@ public class Bivio {
 	}
 
 
-	public void setScelte(ArrayList<Scelta> scelte) {
-		this.scelte = scelte;
-	}
-	
+
 
 }
